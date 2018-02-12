@@ -1,0 +1,27 @@
+<%= form_with(model: uf, local: true) do |form| %>
+  <% if uf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(uf.errors.count, "error") %> prohibited this uf from being saved:</h2>
+
+      <ul>
+      <% uf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :uf_valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.date_select :fecha, id: :uf_fecha %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

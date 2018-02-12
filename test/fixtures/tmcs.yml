@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  valor: 1.5
+  fecha: 2018-02-10
+  titulo: MyText
+  subtitulo: MyText
+  tipo: 1
+
+two:
+  valor: 1.5
+  fecha: 2018-02-10
+  titulo: MyText
+  subtitulo: MyText
+  tipo: 1

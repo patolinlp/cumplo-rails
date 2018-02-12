@@ -1,0 +1,42 @@
+<%= form_with(model: tmc, local: true) do |form| %>
+  <% if tmc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tmc.errors.count, "error") %> prohibited this tmc from being saved:</h2>
+
+      <ul>
+      <% tmc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :tmc_valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.date_select :fecha, id: :tmc_fecha %>
+  </div>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_area :titulo, id: :tmc_titulo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subtitulo %>
+    <%= form.text_area :subtitulo, id: :tmc_subtitulo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo %>
+    <%= form.number_field :tipo, id: :tmc_tipo %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

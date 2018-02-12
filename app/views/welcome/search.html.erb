@@ -1,0 +1,192 @@
+<%= render 'form' %>
+
+<!-- /.col (left) -->
+<div class="col-md-12">
+<!-- LINE CHART -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Valor del Dolar</h3>
+    </div>
+    <div class="box-body chart-responsive">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-center">
+            <strong>Valor del Dolar</strong>
+          </p>
+          <div id="line-chart-dolar">
+          	<%=line_chart @data_dolars, xtitle: "Fechas", ytitle: "Valores" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center">
+            <strong>Datos históricos</strong>
+          </p>
+          <div class="direct-chat-messages">
+            <dl class="dl-horizontal" id="data-dolar">
+              
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <div class="row">
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-green" id="dolar-max">$<%=Dolar.valor_max(@dolars)%></span>
+            <span class="description-text">VALOR MÁXIMO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-red" id="dolar-min">$<%=Dolar.valor_min(@dolars)%></span>
+            <span class="description-text">VALOR MÍNIMO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-yellow" id="dolar-prom">$<%=Dolar.valor_avr(@dolars)%></span>
+            <span class="description-text">PROMEDIO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+  <!-- /.box -->
+</div>
+
+<!-- /.col (left) -->
+<div class="col-md-12">
+<!-- LINE CHART -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Valor de la UF</h3>
+    </div>
+    <div class="box-body chart-responsive">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-center">
+            <strong>Valor de la UF</strong>
+          </p>
+          <div id="line-chart-dolar">
+          	<%=line_chart @data_ufs, xtitle: "Fechas", ytitle: "Valores" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center">
+            <strong>Datos históricos</strong>
+          </p>
+          <div class="direct-chat-messages">
+            <dl class="dl-horizontal" id="data-dolar">
+              
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <div class="row">
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-green" id="uf-max">$<%=Uf.valor_max(@ufs)%></span>
+            <span class="description-text">VALOR MÁXIMO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-red" id="uf-min">$<%=Uf.valor_min(@ufs)%></span>
+            <span class="description-text">VALOR MÍNIMO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-yellow" id="uf-prom">$<%=Uf.valor_avr(@ufs)%></span>
+            <span class="description-text">PROMEDIO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+  <!-- /.box -->
+</div>
+
+<!-- /.col (left) -->
+<div class="col-md-12">
+<!-- LINE CHART -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Valor del TMC</h3>
+    </div>
+    <div class="box-body chart-responsive">
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-center">
+            <strong>Valor del TMC</strong>
+          </p>
+          <div id="line-chart-dolar">
+          	<%= line_chart @data_tmcs.map { |tmc|  
+          		{name: tmc.tipo, data: tmc }
+          	} %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center">
+            <strong>Datos históricos</strong>
+          </p>
+          <div class="direct-chat-messages">
+            <dl class="dl-horizontal" id="data-dolar">
+              
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <div class="row">
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-green" id="uf-max"></span>
+            <span class="description-text">VALOR MÁXIMO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-red" id="uf-min"></span>
+            <span class="description-text">VALOR MÍNIMO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 col-xs-4">
+          <div class="description-block border-right">
+            <span class="description-percentage text-yellow" id="uf-prom"></span>
+            <span class="description-text">PROMEDIO</span>
+          </div>
+          <!-- /.description-block -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+  <!-- /.box -->
+</div>

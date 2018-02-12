@@ -1,0 +1,27 @@
+<%= form_with(model: dolar, local: true) do |form| %>
+  <% if dolar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dolar.errors.count, "error") %> prohibited this dolar from being saved:</h2>
+
+      <ul>
+      <% dolar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :dolar_valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.date_select :fecha, id: :dolar_fecha %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

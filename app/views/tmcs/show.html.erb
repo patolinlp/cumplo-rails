@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @tmc.valor %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @tmc.fecha %>
+</p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @tmc.titulo %>
+</p>
+
+<p>
+  <strong>Subtitulo:</strong>
+  <%= @tmc.subtitulo %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @tmc.tipo %>
+</p>
+
+<%= link_to 'Edit', edit_tmc_path(@tmc) %> |
+<%= link_to 'Back', tmcs_path %>

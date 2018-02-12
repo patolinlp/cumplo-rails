@@ -1,0 +1,60 @@
+<!-- /.col (left) -->
+<%= form_for :date_range, :url => welcome_search_path, :method => :get do |f| %>
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header">
+        <h3 class="box-title">Filtro por Fecha</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Date -->
+            <div class="form-group">
+              <label>Fecha de Inicio:</label>
+
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <%= f.text_field :dateInit, :class => "form-control pull-right", :id => "datepicker" %>
+              </div>
+              <!-- /.input group -->
+            </div>
+            <!-- /.form group -->
+          </div>
+          <div class="col-md-6">
+            <!-- Date -->
+            <div class="form-group">
+              <label>Fecha de Término:</label>
+
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <%= f.text_field :dateEnd, :class => "form-control pull-right", :id => "datepicker2" %>
+              </div>
+              <!-- /.input group -->
+            </div>
+            <!-- /.form group -->
+          </div>
+        </div>
+      </div>
+      <%= f.submit 'Filtrar' %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  //Date picker Inicio
+  $('#datepicker').datepicker({
+    autoclose: true,
+    format: "dd/mm/yyyy"
+  });
+  //Date picker Termino
+  $('#datepicker2').datepicker({
+    autoclose: true,
+    format: "dd/mm/yyyy"
+
+  });
+</script>
