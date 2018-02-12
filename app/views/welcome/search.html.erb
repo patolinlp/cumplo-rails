@@ -1,5 +1,6 @@
 <%= render 'form' %>
 
+<% if @data_dolars.any? %>
 <!-- /.col (left) -->
 <div class="col-md-12">
 <!-- LINE CHART -->
@@ -22,9 +23,19 @@
             <strong>Datos históricos</strong>
           </p>
           <div class="direct-chat-messages">
+
+          <% if @data_dolars.any? %>
             <dl class="dl-horizontal" id="data-dolar">
-              
+              <% @dolars.each do |dolar| %>
+          		<dt><%= dolar.fecha %></dt>
+          		<dd>$<%= dolar.valor %></dd>
+              <% end %>
             </dl>
+          <% else %>
+          	<p class="text-center">
+          		<strong>No hay datos para mostrar en este rango de fechas</strong>
+	          </p>
+          <% end %>
           </div>
         </div>
       </div>
@@ -34,7 +45,7 @@
       <div class="row">
         <div class="col-sm-4 col-xs-4">
           <div class="description-block border-right">
-            <span class="description-percentage text-green" id="dolar-max">$<%=Dolar.valor_max(@dolars)%></span>
+            <span class="description-percentage text-green" id="dolar-max">$<%=Dolar.valor_max(@dolars).round(2)%></span>
             <span class="description-text">VALOR MÁXIMO</span>
           </div>
           <!-- /.description-block -->
@@ -42,7 +53,7 @@
         <!-- /.col -->
         <div class="col-sm-4 col-xs-4">
           <div class="description-block border-right">
-            <span class="description-percentage text-red" id="dolar-min">$<%=Dolar.valor_min(@dolars)%></span>
+            <span class="description-percentage text-red" id="dolar-min">$<%=Dolar.valor_min(@dolars).round(2)%></span>
             <span class="description-text">VALOR MÍNIMO</span>
           </div>
           <!-- /.description-block -->
@@ -50,7 +61,7 @@
         <!-- /.col -->
         <div class="col-sm-4 col-xs-4">
           <div class="description-block border-right">
-            <span class="description-percentage text-yellow" id="dolar-prom">$<%=Dolar.valor_avr(@dolars)%></span>
+            <span class="description-percentage text-yellow" id="dolar-prom">$<%=Dolar.valor_avr(@dolars).round(2)%></span>
             <span class="description-text">PROMEDIO</span>
           </div>
           <!-- /.description-block -->
@@ -62,7 +73,9 @@
   </div>
   <!-- /.box -->
 </div>
+<% end %>
 
+<% if @data_ufs.any? %>
 <!-- /.col (left) -->
 <div class="col-md-12">
 <!-- LINE CHART -->
@@ -85,9 +98,18 @@
             <strong>Datos históricos</strong>
           </p>
           <div class="direct-chat-messages">
-            <dl class="dl-horizontal" id="data-dolar">
-              
-            </dl>
+          	<% if @data_ufs.any? %>
+	            <dl class="dl-horizontal" id="data-dolar">
+	              <% @ufs.each do |uf| %>
+	          		<dt><%= uf.fecha %></dt>
+	          		<dd>$<%= uf.valor %></dd>
+	              <% end %>
+	            </dl>
+            <% else %>
+	          	<p class="text-center">
+	          		<strong>No hay datos para mostrar en este rango de fechas</strong>
+		          </p>
+	          <% end %>
           </div>
         </div>
       </div>
@@ -97,7 +119,7 @@
       <div class="row">
         <div class="col-sm-4 col-xs-4">
           <div class="description-block border-right">
-            <span class="description-percentage text-green" id="uf-max">$<%=Uf.valor_max(@ufs)%></span>
+            <span class="description-percentage text-green" id="uf-max">$<%=Uf.valor_max(@ufs).round(2)%></span>
             <span class="description-text">VALOR MÁXIMO</span>
           </div>
           <!-- /.description-block -->
@@ -105,7 +127,7 @@
         <!-- /.col -->
         <div class="col-sm-4 col-xs-4">
           <div class="description-block border-right">
-            <span class="description-percentage text-red" id="uf-min">$<%=Uf.valor_min(@ufs)%></span>
+            <span class="description-percentage text-red" id="uf-min">$<%=Uf.valor_min(@ufs).round(2)%></span>
             <span class="description-text">VALOR MÍNIMO</span>
           </div>
           <!-- /.description-block -->
@@ -113,7 +135,7 @@
         <!-- /.col -->
         <div class="col-sm-4 col-xs-4">
           <div class="description-block border-right">
-            <span class="description-percentage text-yellow" id="uf-prom">$<%=Uf.valor_avr(@ufs)%></span>
+            <span class="description-percentage text-yellow" id="uf-prom">$<%=Uf.valor_avr(@ufs).round(2)%></span>
             <span class="description-text">PROMEDIO</span>
           </div>
           <!-- /.description-block -->
@@ -125,13 +147,15 @@
   </div>
   <!-- /.box -->
 </div>
+<% end %>
 
+<% if @data_tmcs.any? %>
 <!-- /.col (left) -->
 <div class="col-md-12">
 <!-- LINE CHART -->
   <div class="box box-info">
     <div class="box-header with-border">
-      <h3 class="box-title">Valor del TMC</h3>
+      <h3 class="box-title">Valor de la Tasa Máxima Convencional</h3>
     </div>
     <div class="box-body chart-responsive">
       <div class="row">
@@ -140,8 +164,8 @@
             <strong>Valor del TMC</strong>
           </p>
           <div id="line-chart-dolar">
-          	<%= line_chart @data_tmcs.map { |tmc|  
-          		{name: tmc.tipo, data: tmc }
+          	<%= line_chart @data_tmcs.each { |k, v|  
+          		{name: k, data: v }
           	} %>
           </div>
         </div>
@@ -150,43 +174,73 @@
             <strong>Datos históricos</strong>
           </p>
           <div class="direct-chat-messages">
+          <% if @data_tmcs.any? %>
+          	<% @data_tmcs.each do |k, v| %>
+	          	<p class="text-center">
+	          		<strong>Tipo: </strong><span><%= k %> | </span>
+		            <strong><%= Tmc.obtain_title(k).titulo %></strong>
+		            <span><%= Tmc.obtain_title(k).subtitulo %></span>
+		          </p>
+	            <dl class="dl-horizontal" id="data-dolar">
+	        			<% Tmc.obtain_for_type(k, @tmcs).each do |tmc| %>
+	              	<dt><%= tmc.fecha %></dt>
+	              	<dd><%= tmc.valor %>%</dd>
+	              <% end %>
+	              	<dd>______<dd>
+	              	<dt>Valor Máximo: </dt>
+	              	<dd><%= Tmc.max_for_type(k, @tmcs)%>%</dd>
+	            </dl>
+	          <% end %>
+          <% else %>
+	          <p class="text-center">
+          		<strong>No hay datos para mostrar en este rango de fechas</strong>
+	          </p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- /.col (left) -->
+<div class="col-md-12">
+	<!-- LINE CHART -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Detalle Tasa Máxima Convencional por Tipo</h3>
+    </div>
+    <div class="box-body chart-responsive">
+      <% @data_tmcs.each do |k, v| %>
+      <div class="row">
+        <div class="col-md-8">
+          <p class="text-center">
+            <strong>Tipo: </strong><span><%= k %> | </span>
+	          <strong><%= Tmc.obtain_title(k).titulo %></strong>
+          </p>
+          <div id="line-chart-dolar">
+          	<%= line_chart v %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="text-center">
+            <strong>Datos históricos</strong>
+          </p>
+          <div class="direct-chat-messages">
             <dl class="dl-horizontal" id="data-dolar">
-              
+              <% Tmc.obtain_for_type(k, @tmcs).each do |tmc| %>
+              	<dt><%= tmc.fecha %></dt>
+              	<dd><%= tmc.valor %>%</dd>
+              <% end %>
+	              <dd>______<dd>
+	            	<dt>Valor Máximo: </dt>
+	            	<dd><%= Tmc.max_for_type(k, @tmcs)%>%</dd>
             </dl>
           </div>
         </div>
       </div>
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-      <div class="row">
-        <div class="col-sm-4 col-xs-4">
-          <div class="description-block border-right">
-            <span class="description-percentage text-green" id="uf-max"></span>
-            <span class="description-text">VALOR MÁXIMO</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 col-xs-4">
-          <div class="description-block border-right">
-            <span class="description-percentage text-red" id="uf-min"></span>
-            <span class="description-text">VALOR MÍNIMO</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 col-xs-4">
-          <div class="description-block border-right">
-            <span class="description-percentage text-yellow" id="uf-prom"></span>
-            <span class="description-text">PROMEDIO</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+      <% end %>
     </div>
   </div>
   <!-- /.box -->
 </div>
+<% end %>

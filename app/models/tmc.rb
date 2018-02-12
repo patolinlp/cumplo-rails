@@ -14,10 +14,29 @@ class Tmc < ApplicationRecord
 		end
 	end
 
+	def self.obtain_for_type(k, tmcs)
+		tmcs.where(:tipo => k.to_i)
+	end
+
+	def self.obtain_title(k)
+		Tmc.where(:tipo => k.to_i).first
+	end
+
+	def self.max_for_type(k, tmcs)
+		tmcs.where(:tipo => k.to_i).maximum(:valor).round(2)
+	end
+
 	def self.chart_data(tmcs)
-		#data = tmcs.group_by{|h| h[:fecha]}.each{|_, v| v.map!{|h| [h[:valor]]}}
-		data = tmcs
-		
-		#data = tmcs.group_by{|h| h[:tipo]}.each{|_, v| v.map!{|h| [h[:fecha], h[:valor]]}}
+		data = tmcs.group_by{|h| h[:tipo]}.each{|_, s| s.map!{|h| [h[:fecha],h[:valor]]}}
+		#data = tmcs
+		#data.map.each do |item, obj|
+		#	puts "#{obj}: #{item}"
+		#end
+
+		#puts "---------------------------"
+		#puts data
+		#puts "---------------------------"
+
+		data.map
 	end
 end
